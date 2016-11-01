@@ -1,19 +1,17 @@
-// require the dependencies we installed
 var app = require('express')();
 var responseTime = require('response-time')
 var axios = require('axios');
 var redis = require('redis');
 
-// create a new redis client and connect to our local redis instance
+// create a new redis client and connect to local redis instance
 var client = redis.createClient();
 
-// if an error occurs, print it to the console
+// handle error
 client.on('error', function (err) {
     console.log("Error " + err);
 });
 
 app.set('port', (process.env.PORT || 5000));
-// set up the response-time middleware
 app.use(responseTime());
 
 // call the IMDb API to fetch information about the movie
